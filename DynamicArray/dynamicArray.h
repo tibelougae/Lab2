@@ -8,10 +8,10 @@ class DynamicArray
 public:
 	DynamicArray();
 	int getCapacite();
-
+	int getElement(int);
 private:
 	int capacite;
-
+	int * tabElements;
 };
 
 
