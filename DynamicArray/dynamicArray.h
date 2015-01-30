@@ -6,11 +6,11 @@ class DynamicArray
 {
 
 public:
-
-
+	DynamicArray();
+	int getCapacite();
 
 private:
-
+	int capacite;
 
 };
 
