@@ -1,13 +1,8 @@
 #include "dynamicArray.h"
 
-DynamicArray::DynamicArray()
-{
-	capacite = 100;
-	initializeTab();
-}
-
 DynamicArray::DynamicArray(int _capaciteDepart)
 {
+	if (_capaciteDepart < 1) throw invalid_argument("L'argument est invalide, il doit être au moins 1");
 	capacite = _capaciteDepart;
 	initializeTab();
 }

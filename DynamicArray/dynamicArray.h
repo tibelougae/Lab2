@@ -1,13 +1,14 @@
 #ifndef DYNAMICARRAY_H_
 #define DYNAMICARRAY_H_
 
+using namespace std;
+#include <iostream>
 
 class DynamicArray
 {
 
 public:
-	DynamicArray();
-	DynamicArray(int);
+	DynamicArray(int capacite = 100);
 	void setCapacite(int);
 	int getCapacite();
 	void setElement(int, int);
