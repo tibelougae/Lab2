@@ -3,12 +3,26 @@
 DynamicArray::DynamicArray()
 {
 	capacite = 100;
-	tabElements = new int[capacite];
+	initializeTab();
+}
 
-	for (int i = 0; i < capacite; i++)
+DynamicArray::DynamicArray(int _capaciteDepart)
+{
+	capacite = _capaciteDepart;
+	initializeTab();
+}
+
+void DynamicArray::setCapacite(int _nouvelleCapacite)
+{
+	int * tabTemporaire = new int[_nouvelleCapacite];
+	
+	for (int i = 0; i < _nouvelleCapacite; i++)
 	{
-		tabElements[i] = 0;
+		i < capacite ? tabTemporaire[i] = tabElements[i] : tabTemporaire[i] = 0;
 	}
+	delete tabElements;
+	capacite = _nouvelleCapacite;
+	tabElements = tabTemporaire;
 }
 
 int DynamicArray::getCapacite()
@@ -16,7 +30,22 @@ int DynamicArray::getCapacite()
 	return capacite;
 }
 
+void DynamicArray::setElement(int _position, int _valeur)
+{
+	tabElements[_position] = _valeur;
+}
+
 int DynamicArray::getElement(int _position)
 {
 	return tabElements[_position];
+}
+
+void DynamicArray::initializeTab()
+{
+	tabElements = new int[capacite];
+
+	for (int i = 0; i < capacite; i++)
+	{
+		tabElements[i] = 0;
+	}
 }
