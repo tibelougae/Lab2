@@ -40,6 +40,7 @@ void DynamicArray::setElement(int _position, int _valeur)
 
 int DynamicArray::getElement(int _position)
 {
+	if (_position > capacite) { throw out_of_range("La position doit se trouver dans le tableau"); };
 	return tabElements[_position];
 }
 
