@@ -9,6 +9,7 @@ DynamicArray::DynamicArray(int _capaciteDepart)
 
 void DynamicArray::setCapacite(int _nouvelleCapacite)
 {
+	if (_nouvelleCapacite < 1) { throw invalid_argument("L'argument est invalide"); };
 	int * tabTemporaire = new int[_nouvelleCapacite];
 
 	for (int i = 0; i < _nouvelleCapacite; i++)
