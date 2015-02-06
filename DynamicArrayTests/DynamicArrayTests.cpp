@@ -219,9 +219,9 @@ namespace DynamicArrayTests
 			DynamicArray tableau2(tableau1);
 
 			//Assert
-			
+
 			// AssertDynamicArraysAreEqual est un méthode privée déclarée à la fin de la classe de tests. Enlever les commentaire pour y avoir accès.
-			AssertDynamicArraysAreEqual(tableau1, tableau2); 
+			AssertDynamicArraysAreEqual(tableau1, tableau2);
 
 		}
 
@@ -295,7 +295,7 @@ namespace DynamicArrayTests
 			{
 				tableau1.setElement(i, i*i);
 			}
-			
+
 			DynamicArray tableau2(TABLEAU_2_CAPACITE);
 			for (unsigned int i = 0; i < TABLEAU_2_CAPACITE; ++i)
 			{
@@ -307,13 +307,13 @@ namespace DynamicArrayTests
 
 			//Assert
 			Assert::AreEqual(TABLEAU_1_CAPACITE_DEPART + TABLEAU_2_CAPACITE, tableau1.getCapacite());
-			
+
 			//Est-ce que les éléments du tableau 1 sont toujours présents (à partir du début)
 			for (unsigned int i = 0; i < TABLEAU_1_CAPACITE_DEPART; ++i)
 			{
 				Assert::AreEqual(int(i*i), tableau1.getElement(i));
 			}
-			
+
 			//Est-ce que les éléments du tableau 2 ont été ajoutés à la suite du tableau 1 ?
 			for (unsigned int i = TABLEAU_1_CAPACITE_DEPART; i < tableau1.getCapacite(); ++i)
 			{
@@ -348,6 +348,29 @@ namespace DynamicArrayTests
 				int valeurElement = int((i - TABLEAU_CAPACITE_DEPART) * (i - TABLEAU_CAPACITE_DEPART));
 				Assert::AreEqual(valeurElement, tableau.getElement(i));
 			}
+		}
+
+		TEST_METHOD(le_constructeur_de_copie_devrait_effectuer_une_copie_profonde)
+		{
+
+			//Le but est dinitialiser le tableau1, de construire le tableau 2 a partir du premier et de changer un
+			//élément du tableau1 ou 2. Si l'élément n'a été changé qu'à une seule place, la copie est profonde
+			
+			//Arrange
+			const int CAPACITE = 5;
+			DynamicArray tableau1(CAPACITE);
+
+			for (unsigned int i = 0; i < CAPACITE; ++i)
+			{
+				tableau1.setElement(i, i*i);
+			}
+			DynamicArray tableau2(tableau1);
+			
+			//Action
+			tableau2.setElement(0, 67);
+
+			//Assert
+			Assert::AreEqual(tableau1.getElement(0), tableau2.getElement(0));
 		}
 
 
