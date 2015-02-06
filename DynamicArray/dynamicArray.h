@@ -13,7 +13,13 @@ public:
 	int getCapacite();
 	void setElement(int, int);
 	int getElement(int);
+
+	bool operator==(DynamicArray& _other) const;
+	const DynamicArray& operator=(DynamicArray& _other);
+	const DynamicArray& operator+=(DynamicArray& _other);
+
 private:
+
 	void initializeTab();
 	int capacite;
 	int * tabElements;

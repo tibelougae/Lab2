@@ -54,3 +54,51 @@ void DynamicArray::initializeTab()
 		tabElements[i] = 0;
 	}
 }
+
+bool DynamicArray::operator==(DynamicArray& _other) const
+{
+	bool result = true;
+
+	for (int i = 0; i < capacite && result; i++)
+	{
+		if (tabElements[i] != _other.tabElements[i])
+		{
+			result = false;
+		}
+	}
+
+	if (capacite != _other.capacite)
+	{
+		result = false;
+	}
+
+	return result;
+}
+
+const DynamicArray& DynamicArray::operator=(DynamicArray& _other)
+{
+	capacite = _other.capacite;
+	tabElements = new int[capacite];
+	for (int i = 0; i < capacite; i++)
+	{
+		tabElements[i] = _other.tabElements[i];
+	}
+
+	return *this;
+}
+
+const DynamicArray& DynamicArray::operator+=(DynamicArray& _other)
+{
+	int oldCapacity = capacite;
+	capacite += _other.capacite;
+	int *newArray = new int[capacite];
+
+	for (int i = 0; i < capacite; i++)
+	{
+		i < oldCapacity ? newArray[i] = tabElements[i] : newArray[i] = _other.tabElements[i - oldCapacity];
+	}
+
+	tabElements = newArray;
+
+	return *this;
+}
